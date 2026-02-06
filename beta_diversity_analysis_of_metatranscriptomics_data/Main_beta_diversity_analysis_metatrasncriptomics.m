@@ -67,6 +67,8 @@ for i=1:2
         [rho(d,i),p(d,i)]=corr(mapped(i,:)',Rel(d,:)','type','spearman');
     end
 end
+nonzero = f_filtering(Rel, groups_y); % nonzero in at least one sample in each serum condition
+p(~nonzero,:) = NaN; % filter species absent in any condition
 
 % ---------------------------
 % Multiple testing correction (simple Bonferroni-like)

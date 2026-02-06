@@ -71,7 +71,11 @@ end
 % ---------------------------
 % Multiple testing correction (simple Bonferroni-like)
 % ---------------------------
+nonzero = f_filtering(Rel, groups_y); % nonzero in at least one sample in each serum condition
+p(~nonzero,:) = NaN; % filter species absent in any condition
+
 adjusted_pvals =  f_Bonferroni(p); 
+
 pp = (adjusted_pvals(:,1)) < 0.05;   % taxa significant with axis 1 after correction
 
 % Prepare color array for biplot (default zeros => black)
